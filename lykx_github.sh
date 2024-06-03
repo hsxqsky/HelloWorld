@@ -312,8 +312,6 @@ bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/troj
 #========================================================
 #主菜单
 function start_menu(){
-    #yum update -y && yum install -y curl && yum install -y socat && yum install wget -y
-    #apt update -y && apt install -y curl && apt install -y socat && apt install wget -y
     clear
     green " ================================= 搭建，科学上网工具 =============================== "
     green "  1.【八合一共存一键脚本】              ||     2.【Xray 另外一个一键安装脚本 】"   
