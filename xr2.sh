@@ -201,8 +201,6 @@ getData() {
 			res=$(echo -n ${resolve} | grep ${IP})
 			if [[ -z "${res}" ]]; then
 				colorEcho ${BLUE} "${DOMAIN} 解析结果：${resolve}"
-				colorEcho ${BLUE} "${DOMAIN} 解析结果：${resolve}"
-				colorEcho ${RED} " 域名未解析到当前服务器IP(${IP})！"
 				colorEcho ${RED} " 域名未解析到当前服务器IP(${IP})！"
 				exit 1
 			fi
@@ -1236,7 +1234,6 @@ install() {
 	setSelinux
 	start
 	showInfo
-	bbrReboot
 }
 
 update() {
