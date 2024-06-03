@@ -1442,23 +1442,10 @@ install() {
     configV2ray
 
     setSelinux
-    installBBR
 
     start
     showInfo
 
-    bbrReboot
-}
-
-bbrReboot() {
-    if [[ "${INSTALL_BBR}" == "true" ]]; then
-        echo  
-        echo " 为使BBR模块生效，系统将在30秒后重启"
-        echo  
-        echo -e " 您可以按 ctrl + c 取消重启，稍后输入 ${RED}reboot${PLAIN} 重启系统"
-        sleep 15
-        reboot
-    fi
 }
 
 update() {
@@ -1850,16 +1837,7 @@ showLog() {
 menu() {
     clear
     echo "#############################################################"
-    echo -e "#                   ${RED}v2ray一键安装脚本${PLAIN}                       "
-    echo -e "# ${GREEN}原作者${PLAIN}: 网络跳越(hijk)                                      "
-    echo -e "# ${GREEN}维护者${PLAIN}: 失落的梦                                               "
-    echo -e "# ${GREEN}网址${PLAIN}: https://www.kehu33.asia                             " 
-    echo -e "# ${GREEN}微信${PLAIN}: Falltoher-1314                           " 
-    echo -e "# ${GREEN} qq${PLAIN}: 1150315739                 "
-    echo -e "#  向${GREEN}网络跳越${PLAIN}致敬！！！                                     "
-    echo -e "#  该脚本原作者为${GREEN}网络跳越${PLAIN}，已经停止维护。该脚本默认     "	
-    echo -e "#  支持BBR加速，支持ipv6连接。目前由${GREEN}失落的梦${PLAIN}修改Bug进行维护。 "	
-    echo	
+    echo -e "#                   ${RED}v2ray一键安装脚本${PLAIN}                       "	
     echo "#############################################################"
 
     echo -e "  ${GREEN}1.${PLAIN}   安装V2ray-VMESS"
