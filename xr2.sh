@@ -412,13 +412,6 @@ getCert() {
 			colorEcho ${RED} " 其他进程占用了80或443端口，请先关闭再运行一键脚本"
 			echo " 端口占用信息如下："
 			echo ${res}
-		# 关闭各类防火墙
-		systemctl stop firewalld
-		systemctl disable firewalld
-		systemctl stop nftables
-		systemctl disable nftables
-		systemctl stop ufw
-		systemctl disable ufw
                         exit 1
 		fi
 		$CMD_INSTALL socat openssl
