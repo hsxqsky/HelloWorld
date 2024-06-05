@@ -6,34 +6,27 @@ PLAIN='\033[0m'
 # 以下网站是随机从Google上找到的无广告网站，不喜欢请改成其他网址，以http或https开头
 # 搭建好后无法打开伪装域名，可能是反代网站挂了，请在网站留言，或者发作者微信，QQ，以便替换新的网站
 SITES=(
-	https://oneprovide.net/aff.php?aff=179/
-	http://www.zhuizishu.com/
-	http://xs.56dyc.com/
-	http://www.ddxsku.com/
-	http://www.biqu6.com/
-	https://www.wenshulou.cc/
-	http://www.55shuba.com/
-	http://www.39shubao.com/
-	https://www.23xsw.cc/
-	https://www.jueshitangmen.info/
-	https://www.zhetian.org/
-	http://www.bequgexs.com/
-	http://www.tjwl.com/
-	https://iaclouds.com/aff.php?aff=524/
-	https://agent.oridc.com/
+	https://www.jjwxc.net/
+	https://culture.ifeng.com/
+	http://www.bhzwy.com/
+	http://book.ce.cn/
+	https://wap.faloo.com/
+	https://www.09k.net/
+	https://jsxs6.shop/
+	https://www.kehu33.asia/
+	http://www.bookshuku.info/
+	http://www.qishuxx.com/
+	https://www.txt80.cc/
+	https://www.bqg789.com/
+	https://www.txt99.org
 )
 
 CONFIG_FILE="/usr/local/etc/xray/config.json"
 OS=$(hostnamectl | grep -i system | cut -d: -f2)
 
-checkwarp(){
-	[[ -n $(wg 2>/dev/null) ]] && colorEcho $RED " 检测到WARP已打开，脚本中断运行" && colorEcho $YELLOW " 请关闭WARP之后再运行本脚本" && exit 1
-}
-
 V6_PROXY=""
-IP=$(curl -s4m8 ipget.net)
-[[ "$?" != "0" ]] && IP=$(curl -s6m8 ipget.net) && V6_PROXY="https://gh-proxy-misakano7545.koyeb.app/"
-[[ $V6_PROXY != "" ]] && echo -e nameserver 2a01:4f8:c2c:123f::1 > /etc/resolv.conf
+IP=$(curl -s4m8 ip.sb)
+[[ "$?" != "0" ]] && IP=$(curl -s6m8 ip.sb)
 
 BT="false"
 NGINX_CONF_PATH="/etc/nginx/conf.d/"
@@ -123,9 +116,9 @@ statusText() {
 normalizeVersion() {
 	if [ -n "$1" ]; then
 		case "$1" in
-			v*) echo "$1" ;;
-			http*) echo "v1.5.3" ;;
-			*) echo "v$1" ;;
+			v*) echo "v1.7.5" ;;
+			http*) echo "v1.7.5" ;;
+			*) echo "v1.7.5" ;;
 		esac
 	else
 		echo ""
@@ -203,14 +196,11 @@ getData() {
 			CERT_FILE="/usr/local/etc/xray/${DOMAIN}.pem"
 			KEY_FILE="/usr/local/etc/xray/${DOMAIN}.key"
 		else
-			resolve=$(curl -sm8 ipget.net/?ip=${DOMAIN})
-			resolve=$(curl -sm8 ipget.net/?ip=${DOMAIN})
+			resolve=$(curl -sm8 ip.sb/?ip=${DOMAIN})
 			res=$(echo -n ${resolve} | grep ${IP})
 			res=$(echo -n ${resolve} | grep ${IP})
 			if [[ -z "${res}" ]]; then
 				colorEcho ${BLUE} "${DOMAIN} 解析结果：${resolve}"
-				colorEcho ${BLUE} "${DOMAIN} 解析结果：${resolve}"
-				colorEcho ${RED} " 域名未解析到当前服务器IP(${IP})！"
 				colorEcho ${RED} " 域名未解析到当前服务器IP(${IP})！"
 				exit 1
 			fi
@@ -220,7 +210,7 @@ getData() {
 	if [[ "$(needNginx)" == "no" ]]; then
 		if [[ "$TLS" == "true" ]]; then
 			read -p " 请输入xray监听端口[默认443]：" PORT
-			[[ -z "${PORT}" ]] && PORT=443
+			[[ -z "${PORT}" ]] && PORT=$(shuf -i50-65000 -n1)
 		else
 			read -p " 请输入xray监听端口[100-65535的一个数字]：" PORT
 			[[ -z "${PORT}" ]] && PORT=$(shuf -i50-65000 -n1)
@@ -232,7 +222,7 @@ getData() {
 		colorEcho ${BLUE} " xray端口：$PORT"
 	else
 		read -p " 请输入Nginx监听端口[100-65535的一个数字，默认443]：" PORT
-		[[ -z "${PORT}" ]] && PORT=443
+		[[ -z "${PORT}" ]] && PORT=$(shuf -i50-65000 -n1)
 		[ "${PORT:0:1}" = "0" ] && colorEcho ${BLUE} " 端口不能以0开头" && exit 1
 		colorEcho ${BLUE} " Nginx端口：$PORT"
 		XPORT=$(shuf -i10000-65000 -n1)
@@ -283,7 +273,7 @@ getData() {
 		while true; do
 			read -p " 请输入伪装路径，以/开头(不懂请直接回车随机)：" WSPATH
 			if [[ -z "${WSPATH}" ]]; then
-				len=$(shuf -i5-12 -n1)
+				len=$(shuf -i8-12 -n1)
 				ws=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $len | head -n 1)
 				WSPATH="/$ws"
 				break
@@ -305,9 +295,12 @@ getData() {
 		echo "   3) 高清壁纸站(https://bing.ioliu.cn)"
 		echo "   4) 奇峰网址(https://agent.oridc.com)"		
 		echo "   5) 自定义反代站点(需以http或者https开头)"
-		read -p "  请选择伪装网站类型[默认:高清壁纸站]" answer
+		read -p "  请选择伪装网站类型[默认:随机]" answer
 		if [[ -z "$answer" ]]; then
-			PROXY_URL="https://bing.ioliu.cn"
+                len=${#SITES[@]}
+                ((len--))
+                index=$(shuf -i0-$len -n 1)
+                PROXY_URL=${SITES[$index]}	
 		else
 			case $answer in
 				1) PROXY_URL="" ;;
@@ -318,7 +311,7 @@ getData() {
 						index=$(shuf -i0-${len} -n1)
 						PROXY_URL=${SITES[$index]}
 						host=$(echo ${PROXY_URL} | cut -d/ -f3)
-						ip=$(curl -sm8 ipget.net/?ip=${host})
+						ip=$(curl -sm8 ip.sb/?ip=${host})
 						res=$(echo -n ${ip} | grep ${host})
 						if [[ "${res}" == "" ]]; then
 							echo "$ip $host" >>/etc/hosts
@@ -419,7 +412,7 @@ getCert() {
 			colorEcho ${RED} " 其他进程占用了80或443端口，请先关闭再运行一键脚本"
 			echo " 端口占用信息如下："
 			echo ${res}
-			exit 1
+                        exit 1
 		fi
 		$CMD_INSTALL socat openssl
 		if [[ "$PMT" == "yum" ]]; then
@@ -431,7 +424,8 @@ getCert() {
 			systemctl start cron
 			systemctl enable cron
 		fi
-		curl -sL https://get.acme.sh | sh -s email=hijk.pw@protonmail.sh
+		autoEmail=$(date +%s%N | md5sum | cut -c 1-8)
+		curl -sL https://get.acme.sh | sh -s email=${autoEmail}@gmail.com
 		source ~/.bashrc
 		~/.acme.sh/acme.sh --upgrade --auto-upgrade
 		~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
@@ -553,8 +547,8 @@ configNginx() {
 				    charset utf-8;
 				
 				    # ssl配置
-				    ssl_protocols TLSv1.1 TLSv1.2;
-				    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+				    ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;  #新增  TLSv1.3
+                    ssl_ciphers TLS13-AES-256-GCM-SHA384:TLS13-CHACHA20-POLY1305-SHA256:TLS13-AES-128-GCM-SHA256:TLS13-AES-128-CCM-8-SHA256:TLS13-AES-128-CCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
 				    ssl_ecdh_curve secp384r1;
 				    ssl_prefer_server_ciphers on;
 				    ssl_session_cache shared:SSL:10m;
@@ -664,7 +658,7 @@ setFirewall() {
 installXray() {
 	rm -rf /tmp/xray
 	mkdir -p /tmp/xray
-	DOWNLOAD_LINK="${V6_PROXY}https://github.com/XTLS/Xray-core/releases/download/${NEW_VER}/Xray-linux-$(archAffix).zip"
+	DOWNLOAD_LINK="https://github.com/XTLS/Xray-core/releases/download/${NEW_VER}/Xray-linux-$(archAffix).zip"
 	colorEcho $BLUE " 下载Xray: ${DOWNLOAD_LINK}"
 	curl -L -H "Cache-Control: no-cache" -o /tmp/xray/xray.zip ${DOWNLOAD_LINK}
 	if [ $? != 0 ]; then
@@ -807,7 +801,6 @@ trojanXTLSConfig() {
 
 vmessConfig() {
 	local uuid="$(cat '/proc/sys/kernel/random/uuid')"
-	local alterid=$(shuf -i50-80 -n1)
 	cat >$CONFIG_FILE <<-EOF
 		{
 		  "inbounds": [{
@@ -837,7 +830,6 @@ vmessConfig() {
 
 vmessKCPConfig() {
 	local uuid="$(cat '/proc/sys/kernel/random/uuid')"
-	local alterid=$(shuf -i50-80 -n1)
 	cat >$CONFIG_FILE <<-EOF
 		{
 		  "inbounds": [{
@@ -1235,18 +1227,6 @@ install() {
 	setSelinux
 	start
 	showInfo
-	bbrReboot
-}
-
-bbrReboot() {
-	if [[ "${INSTALL_BBR}" == "true" ]]; then
-		echo
-		echo " 为使BBR模块生效，系统将在10秒后重启"
-		echo
-		echo -e " 您可以按 ctrl + c 取消重启，稍后输入 ${RED}reboot${PLAIN} 重启系统"
-		sleep 10
-		reboot
-	fi
 }
 
 update() {
@@ -1630,17 +1610,7 @@ datetime=${result:13:19}
 menu() {
 	clear
 	echo "########################################################################################################################"
-	echo -e "#                     ${RED}Xray一键安装脚本${PLAIN} "	
-    echo -e "# ${GREEN}原作者${PLAIN}: 网络跳越(hijk)                                      "
-    echo -e "# ${GREEN}维护者${PLAIN}: 失落的梦                                               "
-    echo -e "# ${GREEN}博客${PLAIN}: https://www.kehu33.asia                             " 
-    echo -e "# ${GREEN}导航站${PLAIN}: https://www.meng666.buzz        "
-	echo -e "# ${GREEN}YouTube${PLAIN}: https://www.youtube.com/channel/UCmteg7BSPK8pTFvKAlkBoEw     "	
-    echo -e "# ${GREEN}微信${PLAIN}: Falltoher-1314                           " 
-    echo -e "# ${GREEN} qq${PLAIN}: 1150315739                 "
-    echo -e "#  向${GREEN}网络跳越${PLAIN}致敬！！！                                     "
-    echo -e "#  该脚本原作者为${GREEN}网络跳越${PLAIN}，已经停止维护。该脚本默认     "	
-    echo -e "#  支持BBR加速，支持ipv6连接。目前由${GREEN}失落的梦${PLAIN}修改Bug进行维护。 "		
+	echo -e "#                     ${RED}Xray一键安装脚本${PLAIN} "			
 	echo "##########################################################################################################################"
 	echo " —————————————————————————————————————————安装协议选项———————————————————————————————"
 	echo -e "  ${GREEN}1.${PLAIN}   安装Xray-VMESS"
@@ -1663,8 +1633,7 @@ menu() {
 	echo " ——————————————"
 	echo -e "  ${GREEN}16.${PLAIN}  查看Xray配置"
 	echo -e "  ${GREEN}17.${PLAIN}  查看Xray日志"
-	echo " ———————————————————————————————结束了请按 ⬆ 数字选择安装————————————————————————————————————————"
-	echo -e " ${BLUE}****** 北京时间: $datetime ******" #$(date) 
+ 	echo " ——————————————"
 	echo -e "  ${GREEN}0.${PLAIN}   退出"
 	echo -n " 当前状态："
 	statusText
@@ -1694,7 +1663,6 @@ menu() {
 }
 
 checkSystem
-checkwarp
 
 action=$1
 [[ -z $1 ]] && action=menu

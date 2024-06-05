@@ -29,74 +29,49 @@ datetime=${result:13:19}
 #echo $datetime
 
 # Lemonbench 综合测试
-function Lemonbench(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/lemonbench.sh)
-}
-# 三网Speedtest测速
-function 3speed(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/superspeed.sh)
-}
-# 回城路由追踪
-function jcnf(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/jcnf.sh)
-}
+
 # 获取服务器系统信息
 function getsysinfo(){
 clear
 bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/sysinfo.sh)
 }
-# 流媒体解锁测试
-function nf(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/nf.sh)
-}
-# 检测/诊断Youtube地域
-function tubecheck(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/tubecheck.sh)
-}
+
+
 # IPV.SH ipv4/6优先级调整
 function ipvsh(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/ipv4.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/ipv4.sh)
 }
 # tiktok无人值守循环推流直播搭建 
 function wuren(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/wuren.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/wuren.sh)
 }
-# VPS内存日志自动清理 
-function vmshellvps(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/vmshellvps.sh)
-}
+
 # 一键修改root密码 
 function root(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/root.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/root.sh)
 }
 # 开放端口,同步时间,更新系统,测速,关闭Iptable规则 
 function init(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/init.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/init.sh)
 }
 # Linux网络优化脚本 
 function tools(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/tools.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/tools.sh)
 }
 # 宝塔面板免验证(中文破解版
 function install_6.0(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/install_6.0.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/install_6.0.sh)
 }
 # 域名IP证书一建申请
 function acme(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/acme.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/acme.sh)
 }
 # WARP 一键安装脚本 
 function warpWARP(){
@@ -106,13 +81,13 @@ bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/warp
 # 检测IP是否解锁tiktok
 function tiktok(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/tiktok.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/tiktok.sh)
 }
 
 # 服务器定时重启配置
 function reboot_config(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/reboot_config.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/reboot_config.sh)
 }
 
 # Debian系统SSH防护
@@ -123,77 +98,59 @@ bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/ssh_
 
 #=====================科学上网工具=======================
 
-#八合一共存一键脚本
-function bahey(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh)
-}
-
 # Nftables一键中转.支持deban系
 function nfconver(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/nfconver.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/nfconver.sh)
 }
 # 安装BBR 
 function bbr(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/tcp.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/tcp.sh)
 }
 # 安装BBRS 
 function bbrs(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/tcp2.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/tcp2.sh)
 }
 # Xray一键安装脚本
 function vpn001(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/xr2.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/xr2.sh)
 }
 # Xray另外一个修改版一键安装脚本 
 function vpn000(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/xr0.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/xr0.sh)
 }
-# 八合一共存脚本 
-function vpn002(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/v2r2.sh)
-} 
+
 # Wulabing v2ray 一键脚本  
 function vpn003(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/xr1.sh)   
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/xr1.sh)   
 } 
 # 233Boy 修改版 V2Ray 一键安装脚本  
 function vpn005(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/v2r3.sh) 
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/v2r3.sh) 
 } 
-# xui 一键安装脚本 
-function x-ui(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/x-ui.sh) 
-}
+
 # ssr 一键安装脚本 
 function ssr(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/ssr.sh) 
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/ssr.sh) 
 } 
 # naiveproxy 一键安装脚本
 function naiveproxy(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/na.sh) 
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/na.sh) 
 } 
 # iptable中转
 function iptsh(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/iptables.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/iptables.sh)
 }
-# gost一键中转
-function gost(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/gost.sh)
-}
+
 # trojan第一种面板 一键脚本
 function trojan1(){
 clear
@@ -204,40 +161,25 @@ function trojan2(){
 clear
 bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/trojan2.sh)
 }
-# SSH开启密码、ROOT登录
-function ssh_open(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/ssh_open.sh)
-}
 # SSH端口更换默认22
 function sshport(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/sshport.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/sshport.sh)
 }
 # Ehco隧道中转
 function ehco(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/ehco.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/ehco.sh)
 }
 # 域名ip证书续签 一键脚本
 function ssl(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/ssl.sh)
-}
-# 牛逼中转面板
-function xd(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/xd.sh)
-}
-# 极光中转面板
-function jiguang(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/jiguang.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/ssl.sh)
 }
 # brooks中转
 function brooks(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/brooks.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/brooks.sh)
 }
 # 欺诈分数以及IP质量检测
 function che(){
@@ -247,7 +189,7 @@ bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/che.
 # ssr 另外一种
 function ssr2(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/ssr2.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/ssr2.sh)
 }
 # nginx安装 一键代码
 function nginx(){
@@ -277,43 +219,23 @@ bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/tiny
 # 看国家IP地区
 function openai(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/openai.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/openai.sh)
 }
-# ovzbbr 
-function ovzbbr(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/ovzbbr.sh)
-}
+
 # Echo隧道便携脚本
 function ehco2(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/ehco2.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/ehco2.sh)
 }
 # sk5脚本
 function sk5(){
 clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/sk5.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/wurendi001/HelloWorld/main/sk5.sh)
 }
-# v2ray
-function v2ray(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/v2ray.sh)
-}
-# trojan
-function trojan(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/trojan.sh)
-}
-#  trojan
-function trojan-go(){
-clear
-bash <(curl -s -L https://raw.githubusercontent.com/hsxqsky/HelloWorld/main/trojan-go.sh)
-}
+
 #========================================================
 #主菜单
 function start_menu(){
-    #yum update -y && yum install -y curl && yum install -y socat && yum install wget -y
-    #apt update -y && apt install -y curl && apt install -y socat && apt install wget -y
     clear
     green " ================================= 搭建，科学上网工具 =============================== "
     green "  1.【八合一共存一键脚本】              ||     2.【Xray 另外一个一键安装脚本 】"   
